@@ -9,6 +9,7 @@ window.onload = function(){
 }
 
 // Globals Variables
+    //  data object 
 const converter = {
     area: {
         name: 'Area',
@@ -193,10 +194,12 @@ function main(){
     // set defaults category units
     updateCategoryChanges(categorySelect, leftSelect, rightSelect);
 
+    // handler
     categorySelect.addEventListener('change', function(){
         updateCategoryChanges(categorySelect, leftSelect, rightSelect)
     });
 
+    // handler
     leftInput.addEventListener('keyup', function(event){
         if(event.target.value && !isNaN(event.target.value)){
             const converterName = categorySelect.value;
@@ -210,6 +213,7 @@ function main(){
         }
     });
 
+    // handler
     rightInput.addEventListener('keyup', function(event){
         if(event.target.value && !isNaN(event.target.value)){
             const converterName = categorySelect.value;
@@ -223,6 +227,7 @@ function main(){
         }
     });
 
+    // handler
     leftSelect.addEventListener('change', function(event){
         if(event.target.value === rightSelect.value){
             const options = rightSelect.getElementsByTagName('option');
@@ -238,6 +243,7 @@ function main(){
         calculateValue(categorySelect, leftSelect, rightSelect);
     });
 
+    // handler
     rightSelect.addEventListener('change', function(event){
         if(event.target.value === leftSelect.value){
             const options = leftSelect.getElementsByTagName('option');
@@ -255,6 +261,11 @@ function main(){
 
 }
 
+/**
+ * - this function will create html option elements dynamically
+ * @param {object} parent 
+ * @param {object} option 
+ */
 function addOption(parent, option){
     const opt = document.createElement('option');
     opt.setAttribute('value', option.value);
@@ -263,6 +274,10 @@ function addOption(parent, option){
     parent.appendChild(opt);
 }
 
+/**
+ * - remove default html child elements
+ * @param {object} parent 
+ */
 function removeAllChild(parent){
     while(parent.firstChild){
         parent.firstChild.remove()
@@ -300,7 +315,7 @@ function updateCategoryChanges(categorySelect, leftSelect, rightSelect){
 }
 
 /**
- * - calculation functions for calculate input field value and updated it's result
+ * - calculation functions for calculate input values and update it's result
  * @param {object} categorySelect 
  * @param {object} leftSelect 
  * @param {object} rightSelect 
